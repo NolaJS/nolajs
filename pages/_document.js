@@ -15,18 +15,13 @@ class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
           />
           <link
-            href="https://fonts.googleapis.com/css?family=Lato&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap"
+            href="https://fonts.googleapis.com/css?family=Josefin+Slab|Lato|Ubuntu+Mono&display=swap"
             rel="stylesheet"
           />
           <style>{`
             html {
               -webkit-text-size-adjust: none;
               box-sizing: border-box;
-              font-size: 10px;
               height: 100%;
               overflow: hidden;
             }
@@ -57,7 +52,6 @@ class MyDocument extends Document {
               color: inherit;
             }
           `}</style>
-          <script src="https://kit.fontawesome.com/b6f1b990eb.js"></script>
         </Head>
         <body>
           <Main />

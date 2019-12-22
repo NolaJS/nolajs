@@ -1,17 +1,22 @@
 import React from 'react';
+import Head from 'next/head';
 
 const Layout = ({ children }) => {
   return (
     <div>
+      <Head>
+        <script src="https://kit.fontawesome.com/b6f1b990eb.js"></script>
+      </Head>
       <div className="header">
         <div className="logo">
           <h1 role="logo">NolaJS</h1>
-          <span>New Orleans JavaScript Tutoring</span>
+          <span>Simple, Flexible Website Design</span>
         </div>
         <ol role="navigation">
           <li>About</li>
           <li>Services</li>
-          <li>Schedule a Session</li>
+          <li>Who We Are</li>
+          <li>Contact</li>
         </ol>
       </div>
       <div className="body">{children}</div>
@@ -21,18 +26,24 @@ const Layout = ({ children }) => {
             <i className="fab fa-linkedin fa-2x"></i>
           </li>
           <li>
-            <i className="fab fa-medium fa-2x"></i>
-          </li>
-          <li>
             <i className="fab fa-twitter fa-2x"></i>
           </li>
         </ol>
         <p>
-          Contact: <a href="mailto:steven@nolajs.com">steven@nolajs.com</a>
+          Contact: <a href="mailto:steven@nolajs.com">start@nolajs.com</a>
         </p>
       </footer>
       <style jsx>{`
-        .header,
+        .header {
+          background: #282c34;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 40px;
+          box-shadow: 5px 5px 5px #ccc;
+          margin-bottom: 20px;
+        }
         .footer {
           background: #282c34;
           width: 100%;
@@ -48,12 +59,12 @@ const Layout = ({ children }) => {
         span {
           color: #bbbbbb;
         }
-        .logo {
-          margin-bottom: 10px;
-          text-align: center;
+        .logo h1 {
+          font-family: 'Josefin Slab', serif;
+          letter-spacing: 2px;
         }
         .logo span {
-          font-size: 14px;
+          font-size: 16px;
           font-style: italic;
         }
         h1 {
@@ -68,15 +79,13 @@ const Layout = ({ children }) => {
           list-style: none;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          width: 90%;
+          justify-content: center;
           max-width: 400px;
           padding: 0;
           margin: 0;
         }
         ol li {
-          width: 300px;
-          text-align: center;
+          margin: 0 15px;
         }
         .footer ol {
           margin-bottom: 20px;
