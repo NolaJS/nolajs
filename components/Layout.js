@@ -1,21 +1,36 @@
 import React from 'react';
-import Head from 'next/head';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faLinkedin,
+  faTwitter,
+  faGithub,
+} from '@fortawesome/fontawesome-free-brands';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Layout = ({ children }) => {
   return (
     <div>
-      <Head>
-        <script src="https://kit.fontawesome.com/b6f1b990eb.js"></script>
-      </Head>
       <div className="header">
         <div className="logo">
-          <h1 role="logo">NolaJS</h1>
-          <span>Simple, Flexible Website Design</span>
+          <h1 role="logo">
+            <span>NO</span>
+            <span>J S</span>
+          </h1>
         </div>
-        <ol role="navigation">
-          <li>About</li>
-          <li>Services</li>
-          <li>Who We Are</li>
+        <div className="nav-mobile">
+          <FontAwesomeIcon icon={faBars} size="2x" />
+        </div>
+        <ol className="nav-desktop" role="navigation">
+          <li>
+            <a href="#portfolio">Portfolio</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="#services">Services</a>
+          </li>
+          <li>Blog</li>
           <li>Contact</li>
         </ol>
       </div>
@@ -23,10 +38,19 @@ const Layout = ({ children }) => {
       <footer className="footer" role="contentinfo">
         <ol aria-label="Steven Scaffidi social links">
           <li>
-            <i className="fab fa-linkedin fa-2x"></i>
+            <a href="https://github.com/sscaff1" rel="nofollow" target="_blank">
+              <FontAwesomeIcon icon={faGithub} size="2x" />
+            </a>
           </li>
           <li>
-            <i className="fab fa-twitter fa-2x"></i>
+            <a href="https://github.com/sscaff1" rel="nofollow" target="_blank">
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/sscaff1" rel="nofollow" target="_blank">
+              <FontAwesomeIcon icon={faLinkedin} size="2x" />
+            </a>
           </li>
         </ol>
         <p>
@@ -35,17 +59,15 @@ const Layout = ({ children }) => {
       </footer>
       <style jsx>{`
         .header {
-          background: #282c34;
+          background: #fff;
           width: 100%;
           display: flex;
           align-items: center;
           justify-content: space-between;
           padding: 20px 40px;
-          box-shadow: 5px 5px 5px #ccc;
-          margin-bottom: 20px;
         }
         .footer {
-          background: #282c34;
+          box-shadow: 5px -5px 5px #ccc;
           width: 100%;
           min-height: 150px;
           display: flex;
@@ -57,21 +79,20 @@ const Layout = ({ children }) => {
         p,
         ol,
         span {
-          color: #bbbbbb;
+          color: #000;
         }
         .logo h1 {
-          font-family: 'Josefin Slab', serif;
           letter-spacing: 2px;
         }
-        .logo span {
-          font-size: 16px;
-          font-style: italic;
+        .logo h1 span {
+          display: block;
+          text-align: center;
         }
         h1 {
-          font-size: 48px;
+          font-size: 36px;
           margin: 0;
           padding: 0;
-          font-variant: small-caps;
+          font-weight: bold;
         }
         span {
         }
@@ -80,12 +101,11 @@ const Layout = ({ children }) => {
           display: flex;
           align-items: center;
           justify-content: center;
-          max-width: 400px;
           padding: 0;
           margin: 0;
         }
         ol li {
-          margin: 0 15px;
+          margin: 0 24px;
         }
         .footer ol {
           margin-bottom: 20px;
@@ -97,6 +117,22 @@ const Layout = ({ children }) => {
         p {
           margin: 0;
           padding: 0;
+        }
+        .header ol li {
+          font-size: 36px;
+          font-family: 'Josefin Slab', serif;
+          font-weight: bold;
+        }
+        .nav-mobile {
+          display: none;
+        }
+        @media (max-width: 950px) {
+          .nav-mobile {
+            display: inline-block;
+          }
+          .nav-desktop {
+            display: none;
+          }
         }
       `}</style>
     </div>

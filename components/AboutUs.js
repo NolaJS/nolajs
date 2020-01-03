@@ -1,47 +1,59 @@
 export default () => {
   return (
-    <div className="root">
-      <h2>Who We Are</h2>
-      <div>
-        <div className="card">
-          <img src="" alt="Christie profile picture" />
-          <p>About Christie</p>
-        </div>
-        <div className="card">
-          <img src="" alt="Steven profile picture" />
-          <p>
-            My name is Steven Scaffidi. I'm a full-time UI developer for a
-            financial tech company. I have a degree in Mathematics from
-            Louisiana State University, and a Masters in Business Adminstration
-            from Tulane University. I didn't start programming until my mid 20s;
-            however, I quickly fell in love with JavaScript. JavaScript is the
-            most popular programming language today, and the growth in job
-            opportunities is a reflection of the tremendous investments made
-            yearly by various fortune 500 companies. If your dream is to learn
-            the language, get a job, or master a framework, I can help!
-          </p>
-        </div>
-        <div className="card">
-          <img src="" alt="Maje profile picture" />
-          <p>About Maje</p>
-        </div>
+    <div>
+      <div className="root">
+        <h2>Who We Are</h2>
+        <p>
+          Steven, Christie, (& their dog Maje) are co-owners & founders of
+          NolaJS. Steven & Christie met in New Orleans and got married in
+          Antigua, Guatemala. Steven is an entrepreneur by nature and has
+          started many successful small businesses. He specializes in creative
+          tech solutions and is an avid reader of all things related to coding.
+          He prefers to leave the design decisions to Christie. Steven graduated
+          from LSU with a BS in math and holds an MBA from Tulane. Christie
+          graduated from Loyola University with a BA in psychology. She also
+          holds an MPH from Tulane and a BSN from LSU. With her diverse
+          background, she found that a commonality of many of her interests was
+          design. This passion for design complements Steven’s passion for
+          coding, so they decided to work together to form a website development
+          team. Maje, a rescue pit mix, is the heart of their home. Found in a
+          NOLA construction yard when he was a puppy, he now spends his time
+          wearing bow ties, pajamas, and giving Christie heart attacks by
+          attempting to chase cars and bite at the waves on the lake.
+        </p>
+      </div>
+      <div className="profile">
+        <img src="/christie.jpg" alt="Christie Picture" />
+        <img src="/maje.jpg" alt="Maje Picture" />
+        <img src="/steven.jpg" alt="Steven Picture" />
       </div>
       <style jsx>{`
-        .root {
-          margin: 0 auto;
-        }
-        .card {
+        .profile {
           display: flex;
-          align-items: center;
-          border: 1px solid #000;
-          margin-bottom: 20px;
-          padding: 10px 20px;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          padding: 50px 10%;
+        }
+        .root {
+          padding-left: 5%;
+          max-width: 85%;
+        }
+        .root p {
+          font-size: 24px;
+          line-height: 34px;
+        }
+        img {
+          height: 250px;
+          width: 250px;
+          object-fit: cover;
+          border-radius: 125px;
+          display: block;
           box-shadow: 5px 5px 10px #ccc;
         }
-        .card img {
-          min-width: 20%;
-          max-width: 20%;
-          margin-right: 15px;
+        @media (max-width: 950px) {
+          .root {
+            padding: 0 10px;
+          }
         }
       `}</style>
     </div>
