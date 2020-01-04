@@ -1,0 +1,9 @@
+{
+  "name": "nolajs",
+  "version": 2,
+  "alias": "nolajs",
+  "cleanUrls": true,
+  "github": {
+    "enabled": true
+  }
+}

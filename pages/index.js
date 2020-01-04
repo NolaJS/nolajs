@@ -36,12 +36,6 @@ export default () => {
       <section id="about">
         <AboutUs />
       </section>
-      <section>
-        <h3>
-          Get your web presence started today by getting in touch at{' '}
-          <a href="mailto:start@nolajs.com">start@nola.js.com</a>
-        </h3>
-      </section>
       <style jsx>{`
         .overview {
           padding-left: 5%;

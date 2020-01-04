@@ -33,16 +33,23 @@ const ProjectCard = () => {
     opacity: 0,
     h3: -100,
     other: 100,
+    pointerEvents: 'none',
   }));
   return (
-    <div>
-      <div
-        className="root"
-        onMouseEnter={() => setText({ h3: 0, other: 0, opacity: 1 })}
-        onMouseLeave={() => setText({ h3: -100, other: 100, opacity: 0 })}
-      >
+    <div
+      className="wrap"
+      onMouseEnter={() =>
+        setText({ h3: 0, other: 0, opacity: 1, pointerEvents: 'all' })
+      }
+      onMouseLeave={() =>
+        setText({ h3: -100, other: 100, opacity: 0, pointerEvents: 'none' })
+      }
+    >
+      <div className="root">
         <img src="https://via.placeholder.com/300x225" alt="" />
-        <animated.div style={{ opacity: text.opacity }}>
+        <animated.div
+          style={{ opacity: text.opacity, pointerEvents: text.pointerEvents }}
+        >
           <div className="learn">
             <animated.div
               style={{
@@ -74,6 +81,10 @@ const ProjectCard = () => {
         <h1>Hello</h1>
       </Modal>
       <style jsx>{`
+        .wrap {
+          height: 225px;
+          width: 300px;
+        }
         .root {
           position: relative;
           display: inline-block;

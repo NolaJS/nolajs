@@ -1,6 +1,6 @@
 export default () => {
   return (
-    <div className="root">
+    <div>
       <h2>Services</h2>
       <div className="card-container">
         <div className="card">
@@ -37,23 +37,21 @@ export default () => {
         end and back end development.
       </p>
       <style jsx>{`
-        .root {
-          margin: 0 auto;
-          padding: 0 5%;
-        }
         h2 {
           text-align: center;
         }
         .card {
           text-align: center;
-          margin-bottom: 20px;
           padding: 10px 20px;
+          margin-bottom: 20px;
           box-shadow: 5px 5px 10px #ccc;
-          max-width: 300px;
+          width: 300px;
         }
         .card-container {
           display: flex;
-          justify-content: space-between;
+          justify-content: space-around;
+          padding: 0 5%;
+          flex-wrap: wrap;
         }
         .card img {
           width: 200px;
@@ -68,7 +66,10 @@ export default () => {
           font-size: 18px;
         }
         .summary {
-          font-size: 36px;
+          font-size: 24px;
+          max-width: 85%;
+          line-height: 34px;
+          padding-left: 5%;
         }
         @media (max-width: 950px) {
           .root {
