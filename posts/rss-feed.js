@@ -5,31 +5,28 @@ const { siteMeta } = require('../blog.config');
 
 // https://jsonfeed.org/version/1
 const feed = {
-  version: 'https://jsonfeed.org/version/1',
-  title: siteMeta.title,
-  home_page_url: siteMeta.siteUrl,
-  feed_url: `${siteMeta.siteUrl}/feed.json`,
-  description: siteMeta.description,
-  icon: `${siteMeta.siteUrl}/static/apple-touch-icon-152x152.png`,
-  favicon: `${siteMeta.siteUrl}/favicon.ico`,
   author: {
+    avatar: `${siteMeta.siteUrl}/static/_jolvera-avatar.jpg`,
     name: siteMeta.author,
     url: siteMeta.siteUrl,
-    avatar: `${siteMeta.siteUrl}/static/_jolvera-avatar.jpg`,
   },
+  description: siteMeta.description,
+  favicon: `${siteMeta.siteUrl}/favicon.ico`,
+  feed_url: `${siteMeta.siteUrl}/feed.json`,
+  home_page_url: siteMeta.siteUrl,
+  icon: `${siteMeta.siteUrl}/static/apple-touch-icon-152x152.png`,
   items: posts.map(post => ({
-    id: `${siteMeta.siteUrl}${post.path}`,
-    url: `${siteMeta.siteUrl}${post.path}`,
-    title: post.title,
-    content_text: `${post.summary} - ${siteMeta.siteUrl}${post.path}`,
-    summary: post.summary,
-    image: `${siteMeta.siteUrl}${post.image}`,
-    date_published: post.publishedAt,
     author: siteMeta.author,
+    content_text: `${post.summary} - ${siteMeta.siteUrl}${post.path}`,
+    date_published: post.publishedAt,
+    id: `${siteMeta.siteUrl}${post.path}`,
+    image: `${siteMeta.siteUrl}${post.image}`,
+    summary: post.summary,
+    title: post.title,
+    url: `${siteMeta.siteUrl}${post.path}`,
   })),
+  title: siteMeta.title,
+  version: 'https://jsonfeed.org/version/1',
 };
 
-fs.writeFileSync(
-  path.join('./.next/static', 'feed.json'),
-  JSON.stringify(feed)
-);
+fs.writeFileSync(path.join('./.next/static', 'feed.json'), JSON.stringify(feed));

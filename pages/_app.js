@@ -1,9 +1,13 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import App from 'next/app';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { ThemeProvider } from 'react-jss';
+
+import theme from '../themes/default';
 import Layout from '../components/Layout';
 
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 config.autoAddCss = false;
 
 class MyApp extends App {
@@ -18,12 +22,22 @@ class MyApp extends App {
   //   return { ...appProps };
   // }
 
+  componentDidMount() {
+    const style = document.getElementById('server-side-styles');
+
+    if (style) {
+      style.parentNode.removeChild(style);
+    }
+  }
+
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     );
   }
 }
