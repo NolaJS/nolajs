@@ -97,6 +97,7 @@ class MyDocument extends Document {
             `,
             }}
           />
+          {this.props.styles}
         </Head>
         <body>
           <Main />
