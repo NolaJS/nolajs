@@ -5,11 +5,13 @@ const styles = ({ shadow, typography }) => ({
   about: {
     '& h3': typography.h3,
     '& p': typography.p,
-    '@media (max-width: 950px)': {
-      padding: [0, 10],
-    },
     maxWidth: '85%',
     paddingLeft: '5%',
+    // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+    '@media (max-width: 950px)': {
+      maxWidth: '100%',
+      padding: [0, 10],
+    },
   },
   profile: {
     '& img': {
@@ -17,6 +19,7 @@ const styles = ({ shadow, typography }) => ({
       boxShadow: shadow.primary,
       display: 'block',
       height: 250,
+      marginBottom: 40,
       objectFit: 'cover',
       width: 250,
     },

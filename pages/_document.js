@@ -79,7 +79,7 @@ class MyDocument extends Document {
                 overflow: scroll;
                 scroll-behavior: smooth;
                 font-family: 'Josefin Sans', serif;
-              }              
+              }
               a {
                 text-decoration: none;
                 color: inherit;

@@ -15,8 +15,14 @@ const styles = ({ palette, shadow, typography }) => ({
         marginBottom: 30,
       },
       '& p:last-child': {
+        '@media (max-width: 950px)': {
+          fontSize: 38,
+        },
         fontSize: 48,
         textTransform: 'uppercase',
+      },
+      '@media (max-width: 950px)': {
+        marginBottom: 60,
       },
       color: palette.text.footer,
     },
@@ -45,11 +51,17 @@ const styles = ({ palette, shadow, typography }) => ({
     background: palette.footerBackground,
     boxShadow: shadow.primary,
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     maxHeight: 360,
     minHeight: 150,
     padding: [80, '20%'],
     textAlign: 'center',
+    // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+    '@media (max-width: 950px)': {
+      maxHeight: 'inherit',
+      padding: [40, 10],
+    },
   },
 });
 
