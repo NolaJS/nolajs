@@ -75,7 +75,11 @@ const Header = ({ classes }) => {
   return (
     <header className={classes.root}>
       <div className="logo">
-        <img src="/logo.svg" alt="NolaJS logo" />
+        <Link href="/">
+          <a>
+            <img src="/logo.svg" alt="NolaJS logo" />
+          </a>
+        </Link>
       </div>
       <nav>
         <button className={classes.navToggle} type="button" onClick={() => setNavStyle({ y: 100 })}>
@@ -111,7 +115,11 @@ const Header = ({ classes }) => {
               <a onClick={reset}>Blog</a>
             </Link>
           </li> */}
-          <li>Contact</li>
+          <li>
+            <Link href="/contact">
+              <a onClick={reset}>Contact</a>
+            </Link>
+          </li>
         </animated.ol>
       </nav>
     </header>
