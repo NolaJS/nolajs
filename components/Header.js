@@ -106,11 +106,11 @@ const Header = ({ classes }) => {
               <a onClick={reset}>Services</a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/blog">
               <a onClick={reset}>Blog</a>
             </Link>
-          </li>
+          </li> */}
           <li>Contact</li>
         </animated.ol>
       </nav>
