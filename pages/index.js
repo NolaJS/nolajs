@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
+import Head from 'next/head';
 import AboutUs from '../components/AboutUs';
 import Services from '../components/Services';
 import Portfolio from '../components/Portfolio';
@@ -50,6 +51,11 @@ const styles = ({ typography }) => ({
 const Index = ({ classes }) => {
   return (
     <div className={classes.root}>
+      <Head>
+        <title>
+          <title>NolaJS</title>
+        </title>
+      </Head>
       <section className={classes.hero}>
         <div>
           <h1>NolaJS</h1>

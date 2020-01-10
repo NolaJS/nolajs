@@ -9,6 +9,9 @@ const styles = ({ palette, shadow, typography }) => ({
   footer: {
     '& .left': {
       '& a': {
+        '@media (max-width: 950px)': {
+          fontSize: 36,
+        },
         fontSize: 48,
         textTransform: 'uppercase',
       },
@@ -18,6 +21,9 @@ const styles = ({ palette, shadow, typography }) => ({
       // eslint-disable-next-line sort-keys-fix/sort-keys-fix
       '& p': {
         ...typography.p,
+        '@media (max-width: 950px)': {
+          marginBottom: 10,
+        },
         marginBottom: 40,
       },
       '@media (max-width: 950px)': {
@@ -30,6 +36,9 @@ const styles = ({ palette, shadow, typography }) => ({
         '& li': {
           margin: [0, 18],
         },
+        '@media (max-width: 950px)': {
+          fontSize: 20,
+        },
         alignItems: 'center',
         display: 'flex',
         fontSize: 24,
@@ -41,6 +50,9 @@ const styles = ({ palette, shadow, typography }) => ({
       '& p': {
         margin: 0,
         marginBottom: 28,
+      },
+      '@media (max-width: 950px)': {
+        fontSize: 36,
       },
       color: palette.text.footer,
       fontSize: 48,

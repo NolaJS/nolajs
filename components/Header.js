@@ -31,6 +31,7 @@ const styles = ({ palette, typography }) => ({
       position: 'fixed',
       top: '-100vh',
       width: '100vw',
+      zIndex: 10,
     },
     alignItems: 'center',
     display: 'flex',

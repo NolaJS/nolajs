@@ -24,9 +24,12 @@ class MyApp extends App {
 
   componentDidMount() {
     const style = document.getElementById('server-side-styles');
-
+    const jssStyles = document.querySelector('#jss-server-side');
     if (style) {
       style.parentNode.removeChild(style);
+    }
+    if (jssStyles) {
+      jssStyles.parentNode.removeChild(jssStyles);
     }
   }
 

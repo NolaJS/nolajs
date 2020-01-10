@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import { Tabs, Tab } from '@material-ui/core';
 
 const TabContent = ({ value }) => {
@@ -15,9 +16,12 @@ const TabContent = ({ value }) => {
 const Contact = () => {
   const [value, setValue] = useState(-1);
   const handleChange = (_e, newValue) => setValue(newValue);
-  const isSimple = value === 0;
   return (
     <div>
+      <Head>
+        <title>NolaJS | Contact Us</title>
+      </Head>
+      <h1>Contact Us</h1>
       <Tabs
         value={value}
         onChange={handleChange}

@@ -1,19 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { SheetsRegistry, JssProvider, createGenerateId } from 'react-jss';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
+    const sheets = new ServerStyleSheets();
     const registry = new SheetsRegistry();
     const generateId = createGenerateId();
     const originalRenderPage = ctx.renderPage;
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: App => props => (
-          <JssProvider registry={registry} generateId={generateId}>
-            <App {...props} />
-          </JssProvider>
-        ),
+        enhanceApp: App => props =>
+          sheets.collect(
+            <JssProvider registry={registry} generateId={generateId}>
+              <App {...props} />
+            </JssProvider>,
+          ),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
@@ -24,6 +27,7 @@ class MyDocument extends Document {
         <>
           {initialProps.styles}
           <style id="server-side-styles">{registry.toString()}</style>
+          {sheets.getStyleElement()}
         </>
       ),
     };
@@ -33,10 +37,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          />
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
