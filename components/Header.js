@@ -29,7 +29,7 @@ const styles = ({ palette, typography }) => ({
       height: '100vh',
       left: 0,
       position: 'fixed',
-      top: '-100%',
+      top: '-100vh',
       width: '100vw',
     },
     alignItems: 'center',
