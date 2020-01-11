@@ -2,7 +2,8 @@
   "extends": "@nolajs/eslint-config",
   "rules": {
     "react/jsx-filename-extension": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off"
   },
   "env": {"browser": true}
 }

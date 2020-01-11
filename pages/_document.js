@@ -26,7 +26,10 @@ class MyDocument extends Document {
       styles: (
         <>
           {initialProps.styles}
-          <style id="server-side-styles">{registry.toString()}</style>
+          <style
+            id="server-side-styles"
+            dangerouslySetInnerHTML={{ __html: registry.toString() }}
+          />
           {sheets.getStyleElement()}
         </>
       ),

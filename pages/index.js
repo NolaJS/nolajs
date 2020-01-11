@@ -52,9 +52,7 @@ const Index = ({ classes }) => {
   return (
     <div className={classes.root}>
       <Head>
-        <title>
-          <title>NolaJS</title>
-        </title>
+        <title>NolaJS</title>
       </Head>
       <section className={classes.hero}>
         <div>
