@@ -46,15 +46,23 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
           <link rel="manifest" href="/favicon/site.webmanifest" />
           <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
-          <link
-            href="https://fonts.googleapis.com/css?family=Josefin+Sans|Josefin+Slab&display=swap"
-            rel="stylesheet"
-          />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <style
             dangerouslySetInnerHTML={{
               __html: `
+              @font-face {
+                font-family: 'Josefin Sans';
+                src: url('/fonts/Josefin_Sans/JosefinSans-Regular.ttf');
+                font-display: auto;
+                font-style: normal;
+              }
+              @font-face {
+                font-family: 'Josefin Slab';
+                src: url('/fonts/Josefin_Slab/JosefinSlab-Regular.ttf');
+                font-display: auto;
+                font-style: normal;
+              }
               html {
                 -webkit-text-size-adjust: none;
                 box-sizing: border-box;
