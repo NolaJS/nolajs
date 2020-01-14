@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
 import Head from 'next/head';
@@ -24,6 +24,9 @@ const styles = ({ palette, typography }) => ({
   },
   root: {
     '& .MuiFormControl-root': {
+      '& label, & p, & input, & legend, & span': {
+        fontFamily: typography.fontFamily,
+      },
       marginBottom: 30,
     },
 
@@ -101,21 +104,94 @@ const services = [
 const Contact = ({ classes }) => {
   const [formState, setFormState] = useState({});
   const handleChange = name => e => {
-    setFormState(s => ({ ...s, [name]: e.target.value }));
+    const {
+      target: { value },
+    } = e;
+    setFormState(s => ({ ...s, [name]: { errorMsg: '', value } }));
+  };
+  const handleBlur = name => () => {
+    setFormState(s => ({
+      ...s,
+      [name]: {
+        ...s[name],
+        errorMsg: (s[name] && !s[name].value) || !s[name] ? 'This field is required' : '',
+      },
+    }));
+  };
+  const hasValidationErrors = useCallback(() => {
+    const formElements =
+      formState.contactType.value === FORM_TYPES.MESSAGE
+        ? form.concat({ name: 'message' }).map(el => el.name)
+        : form
+            .concat(projectForm)
+            .concat(projectForm2)
+            .filter(el => el.required)
+            .map(el => el.name);
+    setFormState(s => {
+      return {
+        ...s,
+        ...formElements.reduce((newState, key) => {
+          if (s[key]) {
+            if (!s[key].value) {
+              return {
+                ...newState,
+                [key]: {
+                  ...s[key],
+                  errorMsg: 'This field is required',
+                },
+              };
+            }
+            return {
+              ...newState,
+              ...s[key],
+            };
+          }
+          return {
+            ...newState,
+            [key]: {
+              errorMsg: 'This field is required',
+              value: '',
+            },
+          };
+        }, {}),
+      };
+    });
+    return (
+      formElements.filter(key => !formState[key] || (formState[key] && !formState[key].value))
+        .length > 0
+    );
+  }, [formState]);
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (hasValidationErrors()) {
+      return;
+    }
+    console.log('submit');
   };
   return (
     <div className={classes.wrap}>
       <Head>
         <title>NolaJS | Contact Us</title>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LfKts4UAAAAAHTy_C4-j9T3fBdMft9L5Kys8A7i" />
       </Head>
       <h1>Contact Us</h1>
       <p className={classes.info}>
         Interested in working with us? Fill out the form below to get started. Once you complete the
         form we’ll be in touch within one business day to discuss your project.
       </p>
-      <form className={classes.root} noValidate autoComplete="off">
+      <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
         {form.map(el => (
-          <TextField {...el} key={el.name} variant="outlined" fullWidth />
+          <TextField
+            {...el}
+            key={el.name}
+            variant="outlined"
+            fullWidth
+            onChange={handleChange(el.name)}
+            onBlur={handleBlur(el.name)}
+            value={(formState[el.name] && formState[el.name].value) || ''}
+            error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
+            helperText={el.required && formState[el.name] && formState[el.name].errorMsg}
+          />
         ))}
         <FormControl component="fieldset" className={classes.todo}>
           <FormLabel component="legend">What do you want to do?</FormLabel>
@@ -137,7 +213,7 @@ const Contact = ({ classes }) => {
           </RadioGroup>
         </FormControl>
         <Collapse isOpened={!!formState.contactType}>
-          {formState.contactType === FORM_TYPES.MESSAGE ? (
+          {formState.contactType && formState.contactType.value === FORM_TYPES.MESSAGE ? (
             <TextField
               multiline
               variant="outlined"
@@ -145,11 +221,27 @@ const Contact = ({ classes }) => {
               label="Your Message"
               name="message"
               rows={6}
+              required
+              onChange={handleChange('message')}
+              onBlur={handleBlur('message')}
+              value={(formState.message && formState.message.value) || ''}
+              error={!!(formState.message && formState.message.errorMsg)}
+              helperText={formState.message && formState.message.errorMsg}
             />
           ) : (
             <div>
               {projectForm.map(el => (
-                <TextField {...el} key={el.name} variant="outlined" fullWidth />
+                <TextField
+                  {...el}
+                  key={el.name}
+                  variant="outlined"
+                  fullWidth
+                  onChange={handleChange(el.name)}
+                  onBlur={handleBlur(el.name)}
+                  value={(formState[el.name] && formState[el.name].value) || ''}
+                  error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
+                  helperText={el.required && formState[el.name] && formState[el.name].errorMsg}
+                />
               ))}
               <FormControl component="fieldset" className={classes.services}>
                 <FormLabel component="legend">What services are you interested in?</FormLabel>
@@ -164,7 +256,17 @@ const Contact = ({ classes }) => {
                 </FormGroup>
               </FormControl>
               {projectForm2.map(el => (
-                <TextField {...el} key={el.name} variant="outlined" fullWidth />
+                <TextField
+                  {...el}
+                  key={el.name}
+                  variant="outlined"
+                  fullWidth
+                  onChange={handleChange(el.name)}
+                  onBlur={handleBlur(el.name)}
+                  value={(formState[el.name] && formState[el.name].value) || ''}
+                  error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
+                  helperText={el.required && formState[el.name] && formState[el.name].errorMsg}
+                />
               ))}
             </div>
           )}

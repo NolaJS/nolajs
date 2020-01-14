@@ -13,7 +13,7 @@ const theme = {
     primary: '5px 5px 10px #ccc',
   },
   typography: {
-    fontFamily: 'Josefin Sans, serif',
+    fontFamily: 'Josefin Sans, sans-serif',
     h1: {
       fontFamily: 'Josefin Slab, serif',
       fontSize: 64,
@@ -31,7 +31,7 @@ const theme = {
       fontSize: 36,
     },
     p: {
-      fontFamily: 'Josefin Sans, serif',
+      fontFamily: 'Josefin Sans, sans-serif',
       fontSize: 24,
       lineHeight: '34px',
     },
