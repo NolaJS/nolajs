@@ -52,7 +52,7 @@ const Index = ({ classes }) => {
   return (
     <div className={classes.root}>
       <Head>
-        <title>NolaJS</title>
+        <title>NolaJS | Simple, Flexible Website and App Development</title>
       </Head>
       <section className={classes.hero}>
         <div>
