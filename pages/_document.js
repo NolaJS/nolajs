@@ -38,9 +38,25 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
+          <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
+          <meta
+            name="title"
+            content="Simple, Flexible Website and App Development"
+          />
+          <meta property="og:site_name" content="nolajs.com" />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:title"
+            content="Simple, Flexible Website and App Development"
+          />
+          <meta name="description" content="Based out of New Orleans, NolaJS provides highly customized web and mobile solutions." />
+          <meta name="keywords" content="website design,website hosting,react,mobile app development,website development,new orleans websites,affordable website" />
+          <meta name="author" content="Steven Scaffidi, Christie DeRussy" />
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+          <meta name="robots" content="index, follow" />
+          <meta httpEquiv="last-modified" content="2019-01-26@08:01:00 GMT" />
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
