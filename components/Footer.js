@@ -93,11 +93,11 @@ const Footer = ({ classes }) => (
         <p>Follow Us</p>
         <ol aria-label="NolaJS social links">
           <li>
-            <a href="https://github.com/sscaff1" target="_blank" rel="noopener noreferrer nofollow">
+            <a href="https://github.com/nolajs" target="_blank" rel="noopener noreferrer nofollow">
               <FontAwesomeIcon icon={faGithub} size="2x" />
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="https://github.com/sscaff1" rel="noopener noreferrer nofollow" target="_blank">
               <FontAwesomeIcon icon={faTwitter} size="2x" />
             </a>
@@ -106,9 +106,13 @@ const Footer = ({ classes }) => (
             <a href="https://github.com/sscaff1" rel="noopener noreferrer nofollow" target="_blank">
               <FontAwesomeIcon icon={faLinkedin} size="2x" />
             </a>
-          </li>
+          </li> */}
           <li>
-            <a href="https://github.com/sscaff1" rel="noopener noreferrer nofollow" target="_blank">
+            <a
+              href="https://www.instagram.com/nola.js"
+              rel="noopener noreferrer nofollow"
+              target="_blank"
+            >
               <FontAwesomeIcon icon={faInstagram} size="2x" />
             </a>
           </li>

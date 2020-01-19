@@ -10,6 +10,7 @@ const styles = ({ palette, typography }) => ({
     '& button': {
       background: 'none',
       border: 'none',
+      color: palette.text.footer,
       fontSize: 40,
       margin: 0,
       padding: 0,
@@ -36,7 +37,8 @@ const styles = ({ palette, typography }) => ({
       padding: 0,
     },
     '@media (max-width: 950px)': {
-      background: 'red',
+      background: palette.footerBackground,
+      color: palette.text.footer,
       left: 0,
       position: 'fixed',
       top: '-100vh',
