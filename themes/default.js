@@ -2,6 +2,7 @@ const theme = {
   palette: {
     accent: '#1a5387',
     background: '#fff',
+    border: '#ccc',
     contactBackground: '#5C7CAB',
     footerBackground: '#042658',
     text: {

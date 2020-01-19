@@ -5,7 +5,7 @@ import AboutUs from '../components/AboutUs';
 import Services from '../components/Services';
 import Portfolio from '../components/Portfolio';
 
-const styles = ({ typography }) => ({
+const styles = ({ palette, typography }) => ({
   hero: {
     '& h1': {
       ...typography.h1,
@@ -14,6 +14,7 @@ const styles = ({ typography }) => ({
       padding: 0,
     },
     '& h1, & h2': {
+      color: palette.background,
       fontWeight: 'bold',
       textAlign: 'center',
     },
@@ -23,7 +24,12 @@ const styles = ({ typography }) => ({
       padding: 0,
     },
     alignItems: 'center',
-    background: 'url(https://via.placeholder.com/1800x515) 50% 50%',
+    backgroundImage: `linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),url(/hero.jpg)`,
+    backgroundPosition: '50% 50%',
+    backgroundSize: 'cover',
     display: 'flex',
     height: 515,
     justifyContent: 'center',

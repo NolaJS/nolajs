@@ -3,31 +3,8 @@ import withStyles from 'react-jss';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { animated, useSpring } from 'react-spring';
-
-const customStyles = {
-  content: {
-    WebkitOverflowScrolling: 'touch',
-    background: '#fff',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    bottom: '15%',
-    left: '15%',
-    outline: 'none',
-    overflow: 'auto',
-    padding: '20px',
-    position: 'absolute',
-    right: '15%',
-    top: '10%',
-  },
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    bottom: 0,
-    left: 0,
-    position: 'fixed',
-    right: 0,
-    top: 0,
-  },
-};
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const styles = ({ palette, typography }) => ({
   learn: {
@@ -69,9 +46,84 @@ const styles = ({ palette, typography }) => ({
     top: 0,
     width: '100%',
   },
+  modal: {
+    '@media (max-width: 950px)': {
+      border: 'none',
+      height: '100vh',
+      left: 0,
+      right: 0,
+      top: 0,
+      width: '100vw',
+    },
+    WebkitOverflowScrolling: 'touch',
+    background: palette.background,
+    border: `1px solid ${palette.border}`,
+    borderRadius: 4,
+    bottom: '15%',
+    left: '25%',
+    outline: 'none',
+    overflow: 'auto',
+    padding: 20,
+    paddingTop: 70,
+    position: 'absolute',
+    right: '25%',
+    top: '10%',
+  },
+  modalClose: {
+    background: 'none',
+    border: 'none',
+    cursor: 'close',
+    fontSize: 36,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+  modalHeader: {
+    borderBottom: `4px solid ${palette.text.primary}`,
+    marginBottom: 5,
+    paddingBottom: 10,
+  },
+  modalOverlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    bottom: 0,
+    left: 0,
+    position: 'fixed',
+    right: 0,
+    top: 0,
+  },
+  modalRoot: {
+    '& h2': {
+      fontSize: 48,
+      margin: 0,
+      textAlign: 'center',
+      textTransform: 'uppercase',
+    },
+    '& h3': {
+      fontSize: 36,
+      margin: 0,
+      textAlign: 'center',
+    },
+    '& p': {
+      '@media (max-width: 950px)': {
+        padding: [50, 20, 0],
+      },
+      borderTop: `2px solid ${palette.accent}`,
+      fontSize: 24,
+      margin: 0,
+      padding: [50, 80, 0],
+      textAlign: 'center',
+    },
+    fontFamily: typography.fontFamily,
+  },
   root: {
-    display: 'inline-block',
+    '& img': {
+      maxHeight: '100%',
+      maxWidth: '100%',
+    },
+    alignItems: 'center',
+    display: 'flex',
     height: 225,
+    justifyContent: 'center',
     position: 'relative',
     textAlign: 'center',
     width: 300,
@@ -82,7 +134,7 @@ const styles = ({ palette, typography }) => ({
   },
 });
 
-const ProjectCard = ({ classes }) => {
+const ProjectCard = ({ classes, description, img, job, skills, subtitle, title }) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useSpring(() => ({
     h3: -100,
@@ -97,7 +149,7 @@ const ProjectCard = ({ classes }) => {
       onMouseLeave={() => setText({ h3: -100, opacity: 0, other: 100, pointerEvents: 'none' })}
     >
       <div className={classes.root}>
-        <img src="https://via.placeholder.com/300x225" alt="" />
+        <img src={img} alt={`${title} logo`} />
         <animated.div style={{ opacity: text.opacity, pointerEvents: text.pointerEvents }}>
           <div className={classes.learn}>
             <animated.div
@@ -105,9 +157,9 @@ const ProjectCard = ({ classes }) => {
                 transform: text.h3.interpolate(y => `translateY(${y}px)`),
               }}
             >
-              <h4>Lamps Plus</h4>
-              <p>Developer</p>
-              <p className="skill">JavaScript</p>
+              <h4>{title}</h4>
+              <p>{job}</p>
+              <p className="skill">{skills}</p>
             </animated.div>
             <animated.div
               style={{
@@ -125,9 +177,20 @@ const ProjectCard = ({ classes }) => {
         isOpen={open}
         onRequestClose={() => setOpen(false)}
         closeTimeoutMS={500}
-        style={customStyles}
+        className={classes.modal}
+        ariaHideApp={false}
+        overlayClassName={classes.modalOverlay}
       >
-        <h1>Hello</h1>
+        <div className={classes.modalRoot}>
+          <div className={classes.modalHeader}>
+            <h2>{title}</h2>
+            <h3>{subtitle}</h3>
+          </div>
+          <p>{description}</p>
+        </div>
+        <button type="button" className={classes.modalClose} onClick={() => setOpen(false)}>
+          <FontAwesomeIcon title="Close" icon={faTimes} />
+        </button>
       </Modal>
     </div>
   );
@@ -135,6 +198,12 @@ const ProjectCard = ({ classes }) => {
 
 ProjectCard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  description: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  job: PropTypes.string.isRequired,
+  skills: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(ProjectCard);

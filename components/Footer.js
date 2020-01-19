@@ -91,7 +91,7 @@ const Footer = ({ classes }) => (
       </div>
       <div className="right">
         <p>Follow Us</p>
-        <ol aria-label="Steven Scaffidi social links">
+        <ol aria-label="NolaJS social links">
           <li>
             <a href="https://github.com/sscaff1" target="_blank" rel="noopener noreferrer nofollow">
               <FontAwesomeIcon icon={faGithub} size="2x" />
