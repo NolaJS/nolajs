@@ -41,18 +41,18 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
-          <meta
-            name="title"
-            content="Simple, Flexible Website and App Development"
-          />
+          <meta name="title" content="Simple, Flexible Website and App Development" />
           <meta property="og:site_name" content="nolajs.com" />
           <meta property="og:type" content="website" />
+          <meta property="og:title" content="Simple, Flexible Website and App Development" />
           <meta
-            property="og:title"
-            content="Simple, Flexible Website and App Development"
+            name="description"
+            content="Based out of New Orleans, NolaJS provides highly customized web and mobile solutions."
           />
-          <meta name="description" content="Based out of New Orleans, NolaJS provides highly customized web and mobile solutions." />
-          <meta name="keywords" content="website design,website hosting,react,mobile app development,website development,new orleans websites,affordable website" />
+          <meta
+            name="keywords"
+            content="website design,website hosting,react,mobile app development,website development,new orleans websites,affordable website"
+          />
           <meta name="author" content="Steven Scaffidi, Christie DeRussy" />
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <meta name="robots" content="index, follow" />
@@ -122,6 +122,18 @@ class MyDocument extends Document {
             }}
           />
           {this.props.styles}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37156842-3" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'UA-37156842-3');
+              `,
+            }}
+          />
         </Head>
         <body>
           <Main />

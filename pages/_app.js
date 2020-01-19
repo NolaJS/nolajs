@@ -1,14 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import App from 'next/app';
+import Router from 'next/router';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { ThemeProvider } from 'react-jss';
+import { pageview } from '../lib/gtag';
 
 import theme from '../themes/default';
 import Layout from '../components/Layout';
 
 config.autoAddCss = false;
+
+Router.events.on('routeChangeComplete', url => pageview(url));
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
