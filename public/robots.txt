@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nolajs.now.sh/sitemap.xml
+Sitemap: https://nolajs.com/sitemap.xml
