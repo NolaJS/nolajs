@@ -84,7 +84,7 @@ const Footer = ({ classes }) => (
       <div className="left">
         <p>Want to discuss an idea or project?</p>
         <Link href="/contact">
-          <a>
+          <a aria-label="contact">
             Contact Us <FontAwesomeIcon icon={faArrowRight} />
           </a>
         </Link>

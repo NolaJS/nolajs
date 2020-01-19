@@ -70,13 +70,13 @@ class MyDocument extends Document {
               @font-face {
                 font-family: 'Josefin Sans';
                 src: url('/fonts/Josefin_Sans/JosefinSans-Regular.ttf');
-                font-display: auto;
+                font-display: swap;
                 font-style: normal;
               }
               @font-face {
                 font-family: 'Josefin Slab';
                 src: url('/fonts/Josefin_Slab/JosefinSlab-Regular.ttf');
-                font-display: auto;
+                font-display: swap;
                 font-style: normal;
               }
               html {

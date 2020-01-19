@@ -83,7 +83,7 @@ const Header = ({ classes }) => {
     <header className={classes.root}>
       <div className="logo">
         <Link href="/">
-          <a>
+          <a aria-label="home">
             <img src="/logo.svg" alt="NolaJS logo" />
           </a>
         </Link>
