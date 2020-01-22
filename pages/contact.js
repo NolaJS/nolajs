@@ -40,6 +40,11 @@ const styles = ({ palette, typography }) => ({
   submit: {
     textAlign: 'center',
   },
+  thanks: {
+    ...typography.h2,
+    color: palette.background,
+    textAlign: 'center',
+  },
   wrap: {
     '& h1': {
       ...typography.h1,
@@ -105,6 +110,7 @@ const services = [
 const Contact = ({ classes }) => {
   const [formState, setFormState] = useState({});
   const [loading, setLoading] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const handleChange = name => e => {
     const {
       target: { value },
@@ -182,12 +188,11 @@ const Contact = ({ classes }) => {
         'Content-Type': 'application/json',
       },
       method: 'POST',
-    })
-      .then(resp => resp.text())
-      .then(res => {
-        setLoading(false);
-        console.log(res);
-      });
+    }).then(() => {
+      setLoading(false);
+      setFormState({});
+      setIsDone(true);
+    });
   };
   return (
     <div className={classes.wrap}>
@@ -201,112 +206,122 @@ const Contact = ({ classes }) => {
         Interested in working with us? Fill out the form below to get started. Once you complete the
         form we’ll be in touch within one business day to discuss your project.
       </p>
-      <div className={classes.formWrap}>
-        {loading ? (
-          <h2>Loading...</h2>
-        ) : (
-          <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-            {form.map(el => (
-              <TextField
-                {...el}
-                key={el.name}
-                variant="outlined"
-                fullWidth
-                onChange={handleChange(el.name)}
-                onBlur={handleBlur(el.name)}
-                value={(formState[el.name] && formState[el.name].value) || ''}
-                error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
-                helperText={el.required && formState[el.name] && formState[el.name].errorMsg}
-              />
-            ))}
-            <FormControl component="fieldset" className={classes.todo}>
-              <FormLabel component="legend">What do you want to do?</FormLabel>
-              <RadioGroup
-                aria-label="contact type"
-                name="contactType"
-                onChange={handleChange('contactType')}
-              >
-                <FormControlLabel
-                  value={FORM_TYPES.MESSAGE}
-                  control={<Radio />}
-                  label="Send us a Message"
-                />
-                <FormControlLabel
-                  value={FORM_TYPES.PROJECT}
-                  control={<Radio />}
-                  label="Start a Project"
-                />
-              </RadioGroup>
-            </FormControl>
-            <Collapse isOpened={!!formState.contactType}>
-              {formState.contactType && formState.contactType.value === FORM_TYPES.MESSAGE ? (
+      {isDone ? (
+        <h2 className={classes.thanks}>
+          Thank you for contacting us. We will get back to you within 1 business day.
+        </h2>
+      ) : (
+        <div className={classes.formWrap}>
+          {loading ? (
+            <h2>Loading...</h2>
+          ) : (
+            <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
+              {form.map(el => (
                 <TextField
-                  multiline
+                  {...el}
+                  key={el.name}
                   variant="outlined"
                   fullWidth
-                  label="Your Message"
-                  name="message"
-                  rows={6}
-                  required
-                  onChange={handleChange('message')}
-                  onBlur={handleBlur('message')}
-                  value={(formState.message && formState.message.value) || ''}
-                  error={!!(formState.message && formState.message.errorMsg)}
-                  helperText={formState.message && formState.message.errorMsg}
+                  onChange={handleChange(el.name)}
+                  onBlur={handleBlur(el.name)}
+                  value={(formState[el.name] && formState[el.name].value) || ''}
+                  error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
+                  helperText={el.required && formState[el.name] && formState[el.name].errorMsg}
                 />
-              ) : (
-                <div>
-                  {projectForm.map(el => (
-                    <TextField
-                      {...el}
-                      key={el.name}
-                      variant="outlined"
-                      fullWidth
-                      onChange={handleChange(el.name)}
-                      onBlur={handleBlur(el.name)}
-                      value={(formState[el.name] && formState[el.name].value) || ''}
-                      error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
-                      helperText={el.required && formState[el.name] && formState[el.name].errorMsg}
-                    />
-                  ))}
-                  <FormControl component="fieldset" className={classes.services}>
-                    <FormLabel component="legend">What services are you interested in?</FormLabel>
-                    <FormGroup>
-                      {services.map(el => (
-                        <FormControlLabel
-                          key={el}
-                          control={
-                            <Checkbox onChange={handleChange('services', true)} value={el} />
-                          }
-                          label={el}
-                        />
-                      ))}
-                    </FormGroup>
-                  </FormControl>
-                  {projectForm2.map(el => (
-                    <TextField
-                      {...el}
-                      key={el.name}
-                      variant="outlined"
-                      fullWidth
-                      onChange={handleChange(el.name)}
-                      onBlur={handleBlur(el.name)}
-                      value={(formState[el.name] && formState[el.name].value) || ''}
-                      error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
-                      helperText={el.required && formState[el.name] && formState[el.name].errorMsg}
-                    />
-                  ))}
+              ))}
+              <FormControl component="fieldset" className={classes.todo}>
+                <FormLabel component="legend">What do you want to do?</FormLabel>
+                <RadioGroup
+                  aria-label="contact type"
+                  name="contactType"
+                  onChange={handleChange('contactType')}
+                >
+                  <FormControlLabel
+                    value={FORM_TYPES.MESSAGE}
+                    control={<Radio />}
+                    label="Send us a Message"
+                  />
+                  <FormControlLabel
+                    value={FORM_TYPES.PROJECT}
+                    control={<Radio />}
+                    label="Start a Project"
+                  />
+                </RadioGroup>
+              </FormControl>
+              <Collapse isOpened={!!formState.contactType}>
+                {formState.contactType && formState.contactType.value === FORM_TYPES.MESSAGE ? (
+                  <TextField
+                    multiline
+                    variant="outlined"
+                    fullWidth
+                    label="Your Message"
+                    name="message"
+                    rows={6}
+                    required
+                    onChange={handleChange('message')}
+                    onBlur={handleBlur('message')}
+                    value={(formState.message && formState.message.value) || ''}
+                    error={!!(formState.message && formState.message.errorMsg)}
+                    helperText={formState.message && formState.message.errorMsg}
+                  />
+                ) : (
+                  <div>
+                    {projectForm.map(el => (
+                      <TextField
+                        {...el}
+                        key={el.name}
+                        variant="outlined"
+                        fullWidth
+                        onChange={handleChange(el.name)}
+                        onBlur={handleBlur(el.name)}
+                        value={(formState[el.name] && formState[el.name].value) || ''}
+                        error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
+                        helperText={
+                          el.required && formState[el.name] && formState[el.name].errorMsg
+                        }
+                      />
+                    ))}
+                    <FormControl component="fieldset" className={classes.services}>
+                      <FormLabel component="legend">What services are you interested in?</FormLabel>
+                      <FormGroup>
+                        {services.map(el => (
+                          <FormControlLabel
+                            key={el}
+                            control={
+                              <Checkbox onChange={handleChange('services', true)} value={el} />
+                            }
+                            label={el}
+                          />
+                        ))}
+                      </FormGroup>
+                    </FormControl>
+                    {projectForm2.map(el => (
+                      <TextField
+                        {...el}
+                        key={el.name}
+                        variant="outlined"
+                        fullWidth
+                        onChange={handleChange(el.name)}
+                        onBlur={handleBlur(el.name)}
+                        value={(formState[el.name] && formState[el.name].value) || ''}
+                        error={el.required && !!(formState[el.name] && formState[el.name].errorMsg)}
+                        helperText={
+                          el.required && formState[el.name] && formState[el.name].errorMsg
+                        }
+                      />
+                    ))}
+                  </div>
+                )}
+                <div className={classes.submit}>
+                  <Button variant="contained" size="large" color="primary" type="submit">
+                    Submit
+                  </Button>
                 </div>
-              )}
-              <div className={classes.submit}>
-                <Button variant="contained" size="large" color="primary" type="submit">
-                  Submit
-                </Button>
-              </div>
-            </Collapse>
-          </form>
-        )}
-      </div>
+              </Collapse>
+            </form>
+          )}
+        </div>
+      )}
     </div>
   );
 };
