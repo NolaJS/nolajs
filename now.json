@@ -5,5 +5,10 @@
   "cleanUrls": true,
   "github": {
     "enabled": true
+  },
+  "build": {
+    "env": {
+      "MG_API_KEY": "@mg_api_key"
+    }
   }
 }

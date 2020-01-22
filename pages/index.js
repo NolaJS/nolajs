@@ -59,6 +59,7 @@ const Index = ({ classes }) => {
     <div className={classes.root}>
       <Head>
         <title>NolaJS | Simple, Flexible Website and App Development</title>
+        <link rel="canonical" href="https://www.nolajs.com" />
       </Head>
       <section className={classes.hero}>
         <div>
