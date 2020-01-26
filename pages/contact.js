@@ -16,6 +16,10 @@ import {
 import { Collapse } from 'react-collapse';
 
 const styles = ({ palette, typography }) => ({
+  '@keyframes rotate': {
+    from: { transform: 'rotate(0deg)' },
+    to: { transform: 'rotate(360deg)' },
+  },
   formWrap: {
     background: palette.background,
     borderRadius: 50,
@@ -27,6 +31,21 @@ const styles = ({ palette, typography }) => ({
     ...typography.p,
     color: palette.background,
     fontSize: 24,
+    textAlign: 'center',
+  },
+  loading: {
+    animationDuration: '2s',
+    animationIterationCount: 'infinite',
+    animationName: '$rotate',
+    backgroundColor: palette.background,
+    height: 150,
+    margin: [0, 'auto'],
+    mask: 'url(logo.svg) no-repeat center',
+    width: 150,
+  },
+  loadingWrap: {
+    color: palette.background,
+    display: 'block',
     textAlign: 'center',
   },
   root: {
@@ -202,19 +221,24 @@ const Contact = ({ classes }) => {
         <script src="https://www.google.com/recaptcha/api.js?render=6LfKts4UAAAAAHTy_C4-j9T3fBdMft9L5Kys8A7i" />
       </Head>
       <h1>Contact Us</h1>
-      <p className={classes.info}>
-        Interested in working with us? Fill out the form below to get started. Once you complete the
-        form we’ll be in touch within one business day to discuss your project.
-      </p>
       {isDone ? (
         <h2 className={classes.thanks}>
           Thank you for contacting us. We will get back to you within 1 business day.
         </h2>
       ) : (
-        <div className={classes.formWrap}>
-          {loading ? (
-            <h2>Loading...</h2>
-          ) : (
+        <p className={classes.info}>
+          Interested in working with us? Fill out the form below to get started. Once you complete
+          the form we’ll be in touch within one business day to discuss your project.
+        </p>
+      )}
+      {loading && !isDone ? (
+        <div className={classes.loadingWrap}>
+          <div className={classes.loading} />
+          <p>Loading...</p>
+        </div>
+      ) : (
+        !isDone && (
+          <div className={classes.formWrap}>
             <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
               {form.map(el => (
                 <TextField
@@ -319,8 +343,8 @@ const Contact = ({ classes }) => {
                 </div>
               </Collapse>
             </form>
-          )}
-        </div>
+          </div>
+        )
       )}
     </div>
   );
